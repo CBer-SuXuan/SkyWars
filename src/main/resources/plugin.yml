@@ -1,0 +1,22 @@
+name: SkyWars
+version: '${version}'
+main: me.suxuan.skywars.SkyWars
+description: SkyWars 空岛战争小游戏
+authors:
+  - SuXuan_Dev
+api-version: '1.21.11'
+load: POSTWORLD
+depend:
+  - SunGameCore
+softdepend:
+  - PlaceholderAPI
+commands:
+  sw:
+    description: SkyWars 主命令
+    usage: /sw <join|leave|forcestart|stop|reload|status>
+    aliases:
+      - skywars
+permissions:
+  skywars.admin:
+    description: 允许管理 SkyWars 对局
+    default: op

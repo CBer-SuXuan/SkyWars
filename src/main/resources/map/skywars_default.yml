@@ -1,0 +1,94 @@
+display-name: 瑞克和莫蒂
+template-world: skywars
+weight: 1
+
+game:
+  protection-seconds: 30
+  game-time-seconds: 600
+  ending-seconds: 8
+  eliminate-y: 10
+  allow-block-break: true
+  refill-chests-on-start: true
+  chest-scan-radius-chunks: 3
+
+# 按箱子到 center 的水平距离选择战利品等级。距离越近，箱子越高级。
+# 物品池默认继承 config.yml 的 loot.tiers。
+# 如需让某张地图独立调整物资，可在本段中增加 default-tier 与 tables。
+loot:
+  center:
+    x: 0.5
+    z: 0.5
+  tiers:
+    - id: center
+      max-distance: 18.0
+    - id: advanced
+      max-distance: 36.0
+    - id: normal
+      max-distance: -1
+  # 可选：本地图自己的默认 tier。
+  # default-tier: normal
+  # 可选：本地图专属物品池。写同名 tier 会覆盖全局；写新 tier 可被上方 tiers 引用。
+  # tables:
+  #   center:
+  #     min-items-per-chest: 8
+  #     max-items-per-chest: 12
+  #     entries:
+  #       ender_pearl:
+  #         material: ENDER_PEARL
+  #         min-amount: 2
+  #         max-amount: 4
+  #         weight: 10
+  #       golden_apple:
+  #         material: GOLDEN_APPLE
+  #         min-amount: 2
+  #         max-amount: 4
+  #         weight: 10
+
+spectator-spawn:
+  x: 0.5
+  y: 90.0
+  z: 0.5
+  yaw: 0.0
+  pitch: 35.0
+
+spawns:
+  - x: 23.5
+    y: 47.0
+    z: 85.5
+    yaw: -90
+    pitch: 10.0
+  - x: 43.5
+    y: 47.0
+    z: 135.5
+    yaw: -135
+    pitch: 10.0
+  - x: 92.5
+    y: 47.0
+    z: 154.5
+    yaw: -180
+    pitch: 10.0
+  - x: 141.5
+    y: 47.0
+    z: 133.5
+    yaw: 135.0
+    pitch: 10.0
+  - x: 161.5
+    y: 47.0
+    z: 85.5
+    yaw: 90.0
+    pitch: 10.0
+  - x: 140.5
+    y: 47.0
+    z: 36.5
+    yaw: 45
+    pitch: 10.0
+  - x: 92.5
+    y: 47.0
+    z: 16.5
+    yaw: 0.0
+    pitch: 10.0
+  - x: 43.5
+    y: 47.0
+    z: 37.5
+    yaw: -45
+    pitch: 10.0

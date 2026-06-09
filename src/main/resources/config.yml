@@ -1,0 +1,444 @@
+queue-template-world: queue
+min-players: 2
+max-players: 8
+long-countdown-seconds: 120
+quick-countdown-seconds: 10
+quick-countdown-percent: 80
+auto-join-non-op: true
+
+queue-spawn:
+  x: 10.5
+  y: 9
+  z: -1.5
+  yaw: -90
+  pitch: 0.0
+
+game:
+  protection-seconds: 30
+  game-time-seconds: 600
+  ending-seconds: 8
+  eliminate-y: -20
+  allow-block-break: true
+  refill-chests-on-start: true
+  # 围绕每个出生点和 spectator-spawn 加载/扫描多少个区块半径来寻找箱子。
+  chest-scan-radius-chunks: 3
+  grenade-tnt:
+    enabled: true
+    power: 3.5
+    fuse-ticks: 40
+    velocity: 1.25
+    cooldown-ticks: 60
+    break-blocks: true
+
+loot:
+  # 全局默认物品池。单张地图可以在 map/*.yml 的 loot.tables 中覆盖或新增 tier。
+  default-tier: normal
+  tiers:
+    # 出生岛/外围箱：保证玩家能开局自保、搭桥和反制，但强装概率较低。
+    normal:
+      min-items-per-chest: 5
+      max-items-per-chest: 8
+      entries:
+        stone_sword:
+          material: STONE_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 18
+        iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+        bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+        arrows:
+          material: ARROW
+          min-amount: 6
+          max-amount: 14
+          weight: 10
+        blocks_oak:
+          material: OAK_PLANKS
+          min-amount: 24
+          max-amount: 48
+          weight: 24
+        blocks_stone:
+          material: COBBLESTONE
+          min-amount: 16
+          max-amount: 32
+          weight: 12
+        snowballs:
+          material: SNOWBALL
+          min-amount: 8
+          max-amount: 16
+          weight: 14
+        eggs:
+          material: EGG
+          min-amount: 8
+          max-amount: 16
+          weight: 12
+        fishing_rod:
+          material: FISHING_ROD
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+        golden_apple:
+          material: GOLDEN_APPLE
+          min-amount: 1
+          max-amount: 1
+          weight: 7
+        cooked_beef:
+          material: COOKED_BEEF
+          min-amount: 4
+          max-amount: 8
+          weight: 10
+        chainmail_helmet:
+          material: CHAINMAIL_HELMET
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        chainmail_chestplate:
+          material: CHAINMAIL_CHESTPLATE
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+        chainmail_leggings:
+          material: CHAINMAIL_LEGGINGS
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+        chainmail_boots:
+          material: CHAINMAIL_BOOTS
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        iron_boots:
+          material: IRON_BOOTS
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+        water_bucket:
+          material: WATER_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+        one_shot_axe:
+          material: DIAMOND_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 1
+          name: "<dark_red><bold>一次性秒人斧"
+          lore:
+            - "<gray>命中敌人后直接淘汰"
+            - "<red>成功命中后会消耗"
+          unbreakable: true
+          action-key: skywars:one_shot_axe
+          flags:
+            - HIDE_ATTRIBUTES
+            - HIDE_UNBREAKABLE
+
+    # 副岛/半路箱：明显提升战斗力，鼓励玩家离开出生岛争夺资源。
+    advanced:
+      min-items-per-chest: 6
+      max-items-per-chest: 10
+      entries:
+        iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 13
+        diamond_sword:
+          material: DIAMOND_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+        bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 9
+        arrows:
+          material: ARROW
+          min-amount: 10
+          max-amount: 24
+          weight: 12
+        blocks_oak:
+          material: OAK_PLANKS
+          min-amount: 32
+          max-amount: 64
+          weight: 16
+        blocks_stone:
+          material: COBBLESTONE
+          min-amount: 32
+          max-amount: 64
+          weight: 12
+        snowballs:
+          material: SNOWBALL
+          min-amount: 12
+          max-amount: 16
+          weight: 8
+        golden_apple:
+          material: GOLDEN_APPLE
+          min-amount: 1
+          max-amount: 2
+          weight: 14
+        cooked_beef:
+          material: COOKED_BEEF
+          min-amount: 6
+          max-amount: 12
+          weight: 8
+        iron_helmet:
+          material: IRON_HELMET
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        iron_chestplate:
+          material: IRON_CHESTPLATE
+          min-amount: 1
+          max-amount: 1
+          weight: 7
+        iron_leggings:
+          material: IRON_LEGGINGS
+          min-amount: 1
+          max-amount: 1
+          weight: 7
+        iron_boots:
+          material: IRON_BOOTS
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        diamond_boots:
+          material: DIAMOND_BOOTS
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+        water_bucket:
+          material: WATER_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        lava_bucket:
+          material: LAVA_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+        tnt:
+          material: TNT
+          min-amount: 2
+          max-amount: 5
+          weight: 4
+        flint_and_steel:
+          material: FLINT_AND_STEEL
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+        ender_pearl:
+          material: ENDER_PEARL
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+        one_shot_axe:
+          material: DIAMOND_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 1
+          name: "<dark_red><bold>一次性秒人斧"
+          lore:
+            - "<gray>命中敌人后直接淘汰"
+            - "<red>成功命中后会消耗"
+          unbreakable: true
+          action-key: skywars:one_shot_axe
+          flags:
+            - HIDE_ATTRIBUTES
+            - HIDE_UNBREAKABLE
+
+    # 中岛箱：高风险高收益，提供强装备和机动道具，但通过权重避免每箱必出神装。
+    center:
+      min-items-per-chest: 7
+      max-items-per-chest: 11
+      entries:
+        diamond_sword:
+          material: DIAMOND_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 7
+        iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        diamond_helmet:
+          material: DIAMOND_HELMET
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        diamond_chestplate:
+          material: DIAMOND_CHESTPLATE
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+        diamond_leggings:
+          material: DIAMOND_LEGGINGS
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+        diamond_boots:
+          material: DIAMOND_BOOTS
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        iron_chestplate:
+          material: IRON_CHESTPLATE
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        iron_leggings:
+          material: IRON_LEGGINGS
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        arrows:
+          material: ARROW
+          min-amount: 16
+          max-amount: 32
+          weight: 10
+        blocks_oak:
+          material: OAK_PLANKS
+          min-amount: 32
+          max-amount: 64
+          weight: 10
+        blocks_stone:
+          material: COBBLESTONE
+          min-amount: 32
+          max-amount: 64
+          weight: 8
+        golden_apple:
+          material: GOLDEN_APPLE
+          min-amount: 1
+          max-amount: 3
+          weight: 14
+        ender_pearl:
+          material: ENDER_PEARL
+          min-amount: 1
+          max-amount: 3
+          weight: 13
+        water_bucket:
+          material: WATER_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        lava_bucket:
+          material: LAVA_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        tnt:
+          material: TNT
+          min-amount: 3
+          max-amount: 8
+          weight: 5
+        grenade_tnt:
+          material: TNT
+          min-amount: 1
+          max-amount: 2
+          weight: 4
+          name: "<red><bold>手雷 TNT"
+          lore:
+            - "<gray>右键投掷，短暂延迟后爆炸"
+          action-key: skywars:grenade_tnt
+        flint_and_steel:
+          material: FLINT_AND_STEEL
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+        fire_charge:
+          material: FIRE_CHARGE
+          min-amount: 2
+          max-amount: 5
+          weight: 3
+        one_shot_axe:
+          material: DIAMOND_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 1
+          name: "<dark_red><bold>一次性秒人斧"
+          lore:
+            - "<gray>命中敌人后直接淘汰"
+            - "<red>成功命中后会消耗"
+          unbreakable: true
+          action-key: skywars:one_shot_axe
+          flags:
+            - HIDE_ATTRIBUTES
+            - HIDE_UNBREAKABLE
+
+    # 可选超级中岛箱。默认地图不使用；特殊地图可以在距离规则中引用 legendary。
+    legendary:
+      min-items-per-chest: 8
+      max-items-per-chest: 12
+      entries:
+        diamond_sword:
+          material: DIAMOND_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        one_shot_axe:
+          material: DIAMOND_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 1
+          name: "<dark_red><bold>一次性秒人斧"
+          lore:
+            - "<gray>命中敌人后直接淘汰"
+            - "<red>成功命中后会消耗"
+          unbreakable: true
+          action-key: skywars:one_shot_axe
+          flags:
+            - HIDE_ATTRIBUTES
+            - HIDE_UNBREAKABLE
+        diamond_chestplate:
+          material: DIAMOND_CHESTPLATE
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        diamond_leggings:
+          material: DIAMOND_LEGGINGS
+          min-amount: 1
+          max-amount: 1
+          weight: 6
+        ender_pearl:
+          material: ENDER_PEARL
+          min-amount: 2
+          max-amount: 4
+          weight: 14
+        golden_apple:
+          material: GOLDEN_APPLE
+          min-amount: 2
+          max-amount: 4
+          weight: 14
+        tnt:
+          material: TNT
+          min-amount: 5
+          max-amount: 10
+          weight: 7
+        arrows:
+          material: ARROW
+          min-amount: 24
+          max-amount: 48
+          weight: 9
+        water_bucket:
+          material: WATER_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+        lava_bucket:
+          material: LAVA_BUCKET
+          min-amount: 1
+          max-amount: 1
+          weight: 5
