@@ -16,11 +16,7 @@ import me.suxuan.sungame.api.session.ManagedPlayerProvider;
 import me.suxuan.sungame.api.spectator.SpectatorOptions;
 import me.suxuan.sungame.api.spectator.SpectatorService;
 import me.suxuan.sungame.api.task.GameTaskRegistry;
-import me.suxuan.sungame.util.AudienceUtil;
-import me.suxuan.sungame.util.GameItemUtil;
-import me.suxuan.sungame.util.LocationUtil;
-import me.suxuan.sungame.util.PlayerStateUtil;
-import me.suxuan.sungame.util.TeleportTracker;
+import me.suxuan.sungame.util.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -152,7 +148,7 @@ public final class GameManager implements ManagedPlayerProvider<SkyWarsGame>, Qu
 			AudienceUtil.showQueueTitle(
 					queue,
 					Component.text(secondsLeft, NamedTextColor.YELLOW),
-					Component.text("SkyWars 即将开始", NamedTextColor.AQUA),
+					Component.text("空岛战争即将开始", NamedTextColor.AQUA),
 					0,
 					25,
 					5
