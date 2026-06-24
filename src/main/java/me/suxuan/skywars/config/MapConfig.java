@@ -43,6 +43,7 @@ public record MapConfig(
 		}
 		if (spawns.isEmpty()) throw new IllegalStateException("地图 " + id + " 缺少 spawns 配置");
 		GameSettings gameSettings = GameSettings.fromSection(config.getConfigurationSection("game"), defaultGameSettings);
+		LootWeightNormalizer.normalize(config.getConfigurationSection("loot"));
 		DistanceLootSelector lootSettings = DistanceLootSelector.fromSection(config.getConfigurationSection("loot"), spectatorSpawn, globalLootSettings);
 		return new MapConfig(id, displayName, templateWorld, weight, spectatorSpawn, spawns, gameSettings, lootSettings);
 	}

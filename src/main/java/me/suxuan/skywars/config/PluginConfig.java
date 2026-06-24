@@ -49,6 +49,7 @@ public final class PluginConfig {
 		ConfigurationSection queueSpawnSection = config.getConfigurationSection("queue-spawn");
 		queueSpawn = queueSpawnSection == null ? new Location(null, 0.5, 80.0, 0.5, 0.0F, 0.0F) : LocationConfigUtil.readRelative(queueSpawnSection);
 		gameSettings = GameSettings.fromSection(config.getConfigurationSection("game"));
+		LootWeightNormalizer.normalize(config.getConfigurationSection("loot"));
 		lootSettings = LootRegistry.fromSection(config.getConfigurationSection("loot"));
 		maps = loadMaps();
 		if (maps.isEmpty()) throw new IllegalStateException("没有可用地图配置，请检查 plugins/SkyWars/map/*.yml");

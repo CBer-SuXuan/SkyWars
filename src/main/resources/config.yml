@@ -29,46 +29,117 @@ game:
     velocity: 1.25
     cooldown-ticks: 60
     break-blocks: true
+  refill:
+    enabled: true
+    first-after-seconds: 180
+    second-after-seconds: 360
+    second-refill-ender-pearls-per-chest: 1
+  doom:
+    enabled: true
+    start-after-seconds: 480
+    # 插件内安全区收缩，不使用原版 WorldBorder，不会遮挡视线。
+    shrink-seconds: 90
+    start-radius: 120.0
+    end-radius: 18.0
+    outside-damage-per-second: 2.0
+    outside-pull-strength: 0.35
+    bombardment:
+      enabled: true
+      interval-seconds: 8
+      warning-ticks: 30
+      radius-around-player: 5.0
+      explosion-power: 2.5
+      break-blocks: true
+      fire: true
 
 loot:
   # 全局默认物品池。单张地图可以在 map/*.yml 的 loot.tables 中覆盖或新增 tier。
   default-tier: normal
   tiers:
-    # 出生岛/外围箱：保证玩家能开局自保、搭桥和反制，但强装概率较低。
+    # 出生岛/外围箱：提供更多基础武器、方块、投掷物和少量保命道具。
     normal:
-      min-items-per-chest: 5
-      max-items-per-chest: 8
+      min-items-per-chest: 7
+      max-items-per-chest: 11
       entries:
+        wooden_sword:
+          material: WOODEN_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 8
         stone_sword:
           material: STONE_SWORD
           min-amount: 1
           max-amount: 1
-          weight: 18
+          weight: 15
+        chipped_stone_sword:
+          material: STONE_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+          name: "<gray>有点锋利的石剑"
+          lore:
+            - "<dark_gray>看起来被人磨过几下"
+          enchantments:
+            sharpness: 1
+        knockback_stick:
+          material: STICK
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+          name: "<yellow><bold>劝退小木棍"
+          lore:
+            - "<gray>不要问，问就是物理劝退"
+          enchantments:
+            knockback: 1
+        stone_axe:
+          material: STONE_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        chipped_iron_axe:
+          material: IRON_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<gray>生锈铁斧"
+          enchantments:
+            sharpness: 1
         iron_sword:
           material: IRON_SWORD
           min-amount: 1
           max-amount: 1
-          weight: 4
+          weight: 3
         bow:
           material: BOW
           min-amount: 1
           max-amount: 1
-          weight: 5
+          weight: 7
         arrows:
           material: ARROW
-          min-amount: 6
-          max-amount: 14
-          weight: 10
+          min-amount: 8
+          max-amount: 18
+          weight: 12
+        crossbow:
+          material: CROSSBOW
+          min-amount: 1
+          max-amount: 1
+          weight: 3
         blocks_oak:
           material: OAK_PLANKS
-          min-amount: 24
-          max-amount: 48
-          weight: 24
+          min-amount: 32
+          max-amount: 64
+          weight: 25
         blocks_stone:
           material: COBBLESTONE
+          min-amount: 24
+          max-amount: 48
+          weight: 16
+        blocks_dirt:
+          material: DIRT
           min-amount: 16
           max-amount: 32
-          weight: 12
+          weight: 8
+          name: "<gray>朴实无华的土"
         snowballs:
           material: SNOWBALL
           min-amount: 8
@@ -83,17 +154,39 @@ loot:
           material: FISHING_ROD
           min-amount: 1
           max-amount: 1
-          weight: 4
-        golden_apple:
-          material: GOLDEN_APPLE
+          weight: 5
+        cobweb:
+          material: COBWEB
+          min-amount: 1
+          max-amount: 3
+          weight: 6
+          name: "<white>紧急蛛网"
+          lore:
+            - "<gray>追击、堵路都能救你一命"
+        ladder:
+          material: LADDER
+          min-amount: 6
+          max-amount: 14
+          weight: 5
+          name: "<gold>逃生梯"
+        slime_platform:
+          material: SLIME_BLOCK
           min-amount: 1
           max-amount: 1
-          weight: 7
-        cooked_beef:
-          material: COOKED_BEEF
-          min-amount: 4
-          max-amount: 8
-          weight: 10
+          weight: 3
+          name: "<green><bold>救命史莱姆平台"
+          lore:
+            - "<gray>右键后在脚下生成临时平台"
+            - "<yellow>防止坠入虚空"
+          action-key: skywars:slime_platform
+        leather_helmet:
+          material: LEATHER_HELMET
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+          name: "<aqua>新手保护帽"
+          enchantments:
+            protection: 1
         chainmail_helmet:
           material: CHAINMAIL_HELMET
           min-amount: 1
@@ -103,12 +196,12 @@ loot:
           material: CHAINMAIL_CHESTPLATE
           min-amount: 1
           max-amount: 1
-          weight: 5
+          weight: 6
         chainmail_leggings:
           material: CHAINMAIL_LEGGINGS
           min-amount: 1
           max-amount: 1
-          weight: 5
+          weight: 6
         chainmail_boots:
           material: CHAINMAIL_BOOTS
           min-amount: 1
@@ -119,16 +212,36 @@ loot:
           min-amount: 1
           max-amount: 1
           weight: 5
-        water_bucket:
-          material: WATER_BUCKET
+        golden_apple:
+          material: GOLDEN_APPLE
           min-amount: 1
           max-amount: 1
+          weight: 6
+        experience_bottle:
+          material: EXPERIENCE_BOTTLE
+          min-amount: 3
+          max-amount: 8
+          weight: 8
+          name: "<green>经验小瓶"
+        cooked_beef:
+          material: COOKED_BEEF
+          min-amount: 6
+          max-amount: 12
+          weight: 10
+        tnt:
+          material: TNT
+          min-amount: 1
+          max-amount: 2
           weight: 4
+          name: "<red><bold>可投掷 TNT"
+          lore:
+            - "<gray>右键投掷，短暂延迟后爆炸"
+          action-key: skywars:grenade_tnt
         one_shot_axe:
           material: DIAMOND_AXE
           min-amount: 1
           max-amount: 1
-          weight: 1
+          weight: 0.05
           name: "<dark_red><bold>一次性秒人斧"
           lore:
             - "<gray>命中敌人后直接淘汰"
@@ -139,55 +252,137 @@ loot:
             - HIDE_ATTRIBUTES
             - HIDE_UNBREAKABLE
 
-    # 副岛/半路箱：明显提升战斗力，鼓励玩家离开出生岛争夺资源。
+    # 副岛/半路箱：主要强化武器、防具和机动/保命道具。
     advanced:
-      min-items-per-chest: 6
-      max-items-per-chest: 10
+      min-items-per-chest: 8
+      max-items-per-chest: 12
       entries:
         iron_sword:
           material: IRON_SWORD
           min-amount: 1
           max-amount: 1
-          weight: 13
+          weight: 12
+        sharp_iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 5
+          name: "<aqua>岛主的备用剑"
+          enchantments:
+            sharpness: 1
+        fire_iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+          name: "<red>热得发烫的铁剑"
+          enchantments:
+            fire_aspect: 1
+        knockback_iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+          name: "<yellow>保持距离铁剑"
+          enchantments:
+            knockback: 1
+        iron_axe:
+          material: IRON_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 8
+        sharp_iron_axe:
+          material: IRON_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<gray>破门铁斧"
+          enchantments:
+            sharpness: 1
         diamond_sword:
           material: DIAMOND_SWORD
           min-amount: 1
           max-amount: 1
-          weight: 2
+          weight: 1
         bow:
           material: BOW
           min-amount: 1
           max-amount: 1
-          weight: 9
+          weight: 8
+        power_bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+          name: "<green>认真起来的弓"
+          enchantments:
+            power: 1
+        punch_bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<yellow>小推推弓"
+          lore:
+            - "<gray>轻轻一箭，礼貌送走"
+          enchantments:
+            punch: 1
+        quick_crossbow:
+          material: CROSSBOW
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<gold>快手弩"
+          enchantments:
+            quick_charge: 1
         arrows:
           material: ARROW
-          min-amount: 10
-          max-amount: 24
+          min-amount: 14
+          max-amount: 28
           weight: 12
         blocks_oak:
           material: OAK_PLANKS
-          min-amount: 32
+          min-amount: 40
           max-amount: 64
-          weight: 16
+          weight: 18
         blocks_stone:
           material: COBBLESTONE
-          min-amount: 32
+          min-amount: 40
           max-amount: 64
-          weight: 12
+          weight: 14
         snowballs:
           material: SNOWBALL
           min-amount: 12
-          max-amount: 16
+          max-amount: 24
+          weight: 9
+        eggs:
+          material: EGG
+          min-amount: 12
+          max-amount: 24
           weight: 8
         golden_apple:
           material: GOLDEN_APPLE
           min-amount: 1
-          max-amount: 2
-          weight: 14
+          max-amount: 1
+          weight: 10
+        experience_bottle:
+          material: EXPERIENCE_BOTTLE
+          min-amount: 6
+          max-amount: 14
+          weight: 10
+          name: "<green>经验瓶"
+        suspicious_stew:
+          material: SUSPICIOUS_STEW
+          min-amount: 1
+          max-amount: 1
+          weight: 4
+          name: "<light_purple>不知道谁煮的汤"
+          lore:
+            - "<gray>喝之前最好先祈祷"
         cooked_beef:
           material: COOKED_BEEF
-          min-amount: 6
-          max-amount: 12
+          min-amount: 8
+          max-amount: 16
           weight: 8
         iron_helmet:
           material: IRON_HELMET
@@ -198,27 +393,38 @@ loot:
           material: IRON_CHESTPLATE
           min-amount: 1
           max-amount: 1
-          weight: 7
+          weight: 8
         iron_leggings:
           material: IRON_LEGGINGS
           min-amount: 1
           max-amount: 1
-          weight: 7
+          weight: 8
         iron_boots:
           material: IRON_BOOTS
           min-amount: 1
           max-amount: 1
           weight: 8
+        protected_iron_chestplate:
+          material: IRON_CHESTPLATE
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<gold>稳健铁胸甲"
+          enchantments:
+            protection: 1
+        projectile_leggings:
+          material: IRON_LEGGINGS
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<aqua>防箭铁裤"
+          enchantments:
+            projectile_protection: 2
         diamond_boots:
           material: DIAMOND_BOOTS
           min-amount: 1
           max-amount: 1
-          weight: 2
-        water_bucket:
-          material: WATER_BUCKET
-          min-amount: 1
-          max-amount: 1
-          weight: 6
+          weight: 1
         lava_bucket:
           material: LAVA_BUCKET
           min-amount: 1
@@ -227,23 +433,49 @@ loot:
         tnt:
           material: TNT
           min-amount: 2
-          max-amount: 5
-          weight: 4
-        flint_and_steel:
-          material: FLINT_AND_STEEL
+          max-amount: 4
+          weight: 5
+          name: "<red><bold>可投掷 TNT"
+          lore:
+            - "<gray>右键投掷，短暂延迟后爆炸"
+          action-key: skywars:grenade_tnt
+        fire_charge:
+          material: FIRE_CHARGE
           min-amount: 1
-          max-amount: 1
-          weight: 3
+          max-amount: 3
+          weight: 5
+          name: "<gold><bold>可发射烈焰弹"
+          lore:
+            - "<gray>右键空气或方块发射火球"
+          action-key: skywars:fire_charge
+        wind_charge:
+          material: WIND_CHARGE
+          min-amount: 1
+          max-amount: 3
+          weight: 5
+          name: "<aqua><bold>自信跳跃器"
+          lore:
+            - "<gray>起飞之前请确认脚下不是虚空"
+        slime_platform:
+          material: SLIME_BLOCK
+          min-amount: 1
+          max-amount: 2
+          weight: 6
+          name: "<green><bold>救命史莱姆平台"
+          lore:
+            - "<gray>右键后在脚下生成临时平台"
+            - "<yellow>防止坠入虚空"
+          action-key: skywars:slime_platform
         ender_pearl:
           material: ENDER_PEARL
           min-amount: 1
           max-amount: 1
-          weight: 4
+          weight: 3
         one_shot_axe:
           material: DIAMOND_AXE
           min-amount: 1
           max-amount: 1
-          weight: 1
+          weight: 0.05
           name: "<dark_red><bold>一次性秒人斧"
           lore:
             - "<gray>命中敌人后直接淘汰"
@@ -254,31 +486,60 @@ loot:
             - HIDE_ATTRIBUTES
             - HIDE_UNBREAKABLE
 
-    # 中岛箱：高风险高收益，提供强装备和机动道具，但通过权重避免每箱必出神装。
+    # 中岛箱：高风险高收益，控制强力道具数量但提供更丰富选择。
     center:
-      min-items-per-chest: 7
-      max-items-per-chest: 11
+      min-items-per-chest: 9
+      max-items-per-chest: 13
       entries:
         diamond_sword:
           material: DIAMOND_SWORD
           min-amount: 1
           max-amount: 1
-          weight: 7
+          weight: 4
+        sharp_diamond_sword:
+          material: DIAMOND_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 1
+          name: "<aqua><bold>中岛镇场剑"
+          enchantments:
+            sharpness: 1
         iron_sword:
           material: IRON_SWORD
           min-amount: 1
           max-amount: 1
-          weight: 8
+          weight: 7
+        fire_iron_sword:
+          material: IRON_SWORD
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+          name: "<red>火热铁剑"
+          enchantments:
+            fire_aspect: 1
+        diamond_axe:
+          material: DIAMOND_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+        sharp_diamond_axe:
+          material: DIAMOND_AXE
+          min-amount: 1
+          max-amount: 1
+          weight: 1
+          name: "<dark_aqua>认真一斧"
+          enchantments:
+            sharpness: 1
         diamond_helmet:
           material: DIAMOND_HELMET
           min-amount: 1
           max-amount: 1
-          weight: 6
+          weight: 4
         diamond_chestplate:
           material: DIAMOND_CHESTPLATE
           min-amount: 1
           max-amount: 1
-          weight: 4
+          weight: 2
         diamond_leggings:
           material: DIAMOND_LEGGINGS
           min-amount: 1
@@ -288,52 +549,107 @@ loot:
           material: DIAMOND_BOOTS
           min-amount: 1
           max-amount: 1
-          weight: 6
-        iron_chestplate:
+          weight: 4
+        guardian_chestplate:
           material: IRON_CHESTPLATE
           min-amount: 1
           max-amount: 1
-          weight: 8
-        iron_leggings:
-          material: IRON_LEGGINGS
+          weight: 4
+          name: "<gold>稳健胸甲"
+          enchantments:
+            protection: 2
+        protected_diamond_leggings:
+          material: DIAMOND_LEGGINGS
           min-amount: 1
           max-amount: 1
-          weight: 8
+          weight: 1
+          name: "<aqua>中岛护腿"
+          enchantments:
+            protection: 1
         bow:
           material: BOW
           min-amount: 1
           max-amount: 1
-          weight: 8
+          weight: 6
+        power_bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<green>认真起来的弓"
+          enchantments:
+            power: 1
+        punch_bow:
+          material: BOW
+          min-amount: 1
+          max-amount: 1
+          weight: 2
+          name: "<yellow>中岛推人弓"
+          enchantments:
+            punch: 1
+        quick_crossbow:
+          material: CROSSBOW
+          min-amount: 1
+          max-amount: 1
+          weight: 3
+          name: "<gold>快手弩"
+          enchantments:
+            quick_charge: 1
         arrows:
           material: ARROW
           min-amount: 16
           max-amount: 32
           weight: 10
+        spectral_arrows:
+          material: SPECTRAL_ARROW
+          min-amount: 4
+          max-amount: 10
+          weight: 4
+          name: "<yellow>你已被标记箭"
         blocks_oak:
           material: OAK_PLANKS
-          min-amount: 32
+          min-amount: 40
           max-amount: 64
           weight: 10
         blocks_stone:
           material: COBBLESTONE
-          min-amount: 32
+          min-amount: 40
           max-amount: 64
           weight: 8
         golden_apple:
           material: GOLDEN_APPLE
           min-amount: 1
-          max-amount: 3
-          weight: 14
+          max-amount: 2
+          weight: 9
+        experience_bottle:
+          material: EXPERIENCE_BOTTLE
+          min-amount: 10
+          max-amount: 24
+          weight: 10
+          name: "<green><bold>中岛经验瓶"
         ender_pearl:
           material: ENDER_PEARL
           min-amount: 1
-          max-amount: 3
-          weight: 13
-        water_bucket:
-          material: WATER_BUCKET
+          max-amount: 2
+          weight: 8
+        wind_charge:
+          material: WIND_CHARGE
           min-amount: 1
-          max-amount: 1
+          max-amount: 3
+          weight: 5
+          name: "<aqua><bold>自信跳跃器"
+          lore:
+            - "<gray>起飞之前请确认脚下不是虚空"
+        slime_platform:
+          material: SLIME_BLOCK
+          min-amount: 1
+          max-amount: 2
           weight: 6
+          name: "<green><bold>救命史莱姆平台"
+          lore:
+            - "<gray>右键后在脚下生成临时平台"
+            - "<yellow>防止坠入虚空"
+          action-key: skywars:slime_platform
         lava_bucket:
           material: LAVA_BUCKET
           min-amount: 1
@@ -341,33 +657,33 @@ loot:
           weight: 6
         tnt:
           material: TNT
-          min-amount: 3
-          max-amount: 8
+          min-amount: 2
+          max-amount: 4
           weight: 5
-        grenade_tnt:
-          material: TNT
-          min-amount: 1
-          max-amount: 2
-          weight: 4
-          name: "<red><bold>手雷 TNT"
+          name: "<red><bold>可投掷 TNT"
           lore:
             - "<gray>右键投掷，短暂延迟后爆炸"
           action-key: skywars:grenade_tnt
-        flint_and_steel:
-          material: FLINT_AND_STEEL
-          min-amount: 1
-          max-amount: 1
-          weight: 3
         fire_charge:
           material: FIRE_CHARGE
-          min-amount: 2
-          max-amount: 5
+          min-amount: 1
+          max-amount: 3
+          weight: 4
+          name: "<gold><bold>可发射烈焰弹"
+          lore:
+            - "<gray>右键空气或方块发射火球"
+          action-key: skywars:fire_charge
+        firework_rocket:
+          material: FIREWORK_ROCKET
+          min-amount: 1
+          max-amount: 3
           weight: 3
+          name: "<gold>节目效果烟花"
         one_shot_axe:
           material: DIAMOND_AXE
           min-amount: 1
           max-amount: 1
-          weight: 1
+          weight: 0.05
           name: "<dark_red><bold>一次性秒人斧"
           lore:
             - "<gray>命中敌人后直接淘汰"
@@ -377,68 +693,3 @@ loot:
           flags:
             - HIDE_ATTRIBUTES
             - HIDE_UNBREAKABLE
-
-    # 可选超级中岛箱。默认地图不使用；特殊地图可以在距离规则中引用 legendary。
-    legendary:
-      min-items-per-chest: 8
-      max-items-per-chest: 12
-      entries:
-        diamond_sword:
-          material: DIAMOND_SWORD
-          min-amount: 1
-          max-amount: 1
-          weight: 8
-        one_shot_axe:
-          material: DIAMOND_AXE
-          min-amount: 1
-          max-amount: 1
-          weight: 1
-          name: "<dark_red><bold>一次性秒人斧"
-          lore:
-            - "<gray>命中敌人后直接淘汰"
-            - "<red>成功命中后会消耗"
-          unbreakable: true
-          action-key: skywars:one_shot_axe
-          flags:
-            - HIDE_ATTRIBUTES
-            - HIDE_UNBREAKABLE
-        diamond_chestplate:
-          material: DIAMOND_CHESTPLATE
-          min-amount: 1
-          max-amount: 1
-          weight: 6
-        diamond_leggings:
-          material: DIAMOND_LEGGINGS
-          min-amount: 1
-          max-amount: 1
-          weight: 6
-        ender_pearl:
-          material: ENDER_PEARL
-          min-amount: 2
-          max-amount: 4
-          weight: 14
-        golden_apple:
-          material: GOLDEN_APPLE
-          min-amount: 2
-          max-amount: 4
-          weight: 14
-        tnt:
-          material: TNT
-          min-amount: 5
-          max-amount: 10
-          weight: 7
-        arrows:
-          material: ARROW
-          min-amount: 24
-          max-amount: 48
-          weight: 9
-        water_bucket:
-          material: WATER_BUCKET
-          min-amount: 1
-          max-amount: 1
-          weight: 5
-        lava_bucket:
-          material: LAVA_BUCKET
-          min-amount: 1
-          max-amount: 1
-          weight: 5

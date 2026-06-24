@@ -72,9 +72,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.cber-suxuan</groupId>
+            <groupId>com.github.CBer-SuXuan</groupId>
             <artifactId>SunGameCore</artifactId>
-            <version>v1.0.3</version>
+            <version>v1.2.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
